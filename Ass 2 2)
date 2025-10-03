@@ -1,0 +1,50 @@
+class Vehicle
+  def initialize(brand, fuel)
+    @brand = brand
+    @fuel = fuel
+  end
+
+  def mileage
+    puts "#{@brand} mileage: 15 km/l"
+  end
+
+  def fuel_level
+    puts "#{@brand} fuel level: #{@fuel} liters"
+  end
+
+  def maintenance
+    puts "#{@brand} requires regular maintenance."
+  end
+end
+
+class Car < Vehicle
+  def air_conditioning
+    puts "#{@brand} AC is on."
+  end
+end
+
+class Truck < Vehicle
+  def load_capacity
+    puts "#{@brand} can carry 10 tons."
+  end
+end
+
+class Motorcycle < Vehicle
+  def helmet_required
+    puts "Helmet is required for #{@brand}."
+  end
+end
+
+car = Car.new("Toyota", 40)
+truck = Truck.new("Volvo", 120)
+bike = Motorcycle.new("Honda", 15)
+
+car.mileage
+car.fuel_level
+car.air_conditioning
+
+truck.mileage
+truck.load_capacity
+
+bike.mileage
+bike.helmet_required
