@@ -1,0 +1,55 @@
+set list1 {Apple Banana Cherry Date Fig Grape}
+set list2 {}
+
+puts "Items in List 1: $list1"
+
+while {1} {
+    puts ""
+    puts "Enter a command:"
+    puts "1 - Copy item from List 1 to List 2"
+    puts "2 - Remove item from List 2"
+    puts "3 - Show List 2"
+    puts "4 - Exit"
+    puts -nonewline "Choice: "
+    flush stdout
+    gets stdin choice
+
+    switch $choice {
+        1 {
+            puts -nonewline "Enter item to copy: "
+            flush stdout
+            gets stdin item
+            if {[lsearch -exact $list1 $item] >= 0} {
+                if {[lsearch -exact $list2 $item] == -1} {
+                    lappend list2 $item
+                    puts "$item copied to List 2"
+                } else {
+                    puts "$item already in List 2"
+                }
+            } else {
+                puts "$item not found in List 1"
+            }
+        }
+        2 {
+            puts -nonewline "Enter item to remove from List 2: "
+            flush stdout
+            gets stdin item
+            if {[lsearch -exact $list2 $item] >= 0} {
+                set list2 [lreplace $list2 [lsearch -exact $list2 $item] [lsearch -exact $list2 $item]]
+                puts "$item removed from List 2"
+            } else {
+                puts "$item not found in List 2"
+            }
+        }
+        3 {
+            puts "Items in List 2: $list2"
+        }
+        4 {
+            puts "Exiting..."
+            break
+        }
+        default {
+            puts "Invalid choice"
+        }
+    }
+}
